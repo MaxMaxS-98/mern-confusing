@@ -1,3 +1,4 @@
+// This file will handle all of the routes for the user
 const router = require('express').Router();
 const {
   createUser,

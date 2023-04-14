@@ -1,3 +1,4 @@
+// all the imports
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
@@ -7,6 +8,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 
+//this is the apollo client that is used to connect to the graphql server
 const client = new ApolloClient({
  request : operation => {
     const token = localStorage.getItem('id_token');
@@ -19,7 +21,7 @@ const client = new ApolloClient({
   uri: '/graphql'
 });
 
-
+// this is the app function that is used to display the pages
 function App() {
   return (
     <ApolloProvider client={client}>

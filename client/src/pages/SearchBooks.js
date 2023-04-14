@@ -1,3 +1,4 @@
+// all of my imports
 import React, { useState, useEffect } from 'react';
 import {
   Container,
@@ -39,7 +40,7 @@ const SearchBooks = () => {
     if (!searchInput) {
       return false;
     }
-
+// this is the try catch function that is used to search for books
     try {
       const response = await searchGoogleBooks(searchInput);
 
@@ -48,7 +49,7 @@ const SearchBooks = () => {
       }
 
       const { items } = await response.json();
-
+// this will create a new book object
       const bookData = items.map((book) => ({
         bookId: book.id,
         authors: book.volumeInfo.authors || ['No author to display'],
@@ -56,7 +57,7 @@ const SearchBooks = () => {
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || '',
       }));
-
+// this will set the searched books to the book data
       setSearchedBooks(bookData);
       setSearchInput('');
     } catch (err) {
@@ -75,7 +76,7 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-
+// this is the try catch function that is used to save a book
     try {
      await saveBook({
         variables: { input: bookToSave },
@@ -94,7 +95,7 @@ const SearchBooks = () => {
       console.error(err);
     }
   };
-
+// this is the return function that will display the search books page
   return (
     <>
       <div className='text-light bg-dark pt-5'>

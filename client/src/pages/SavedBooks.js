@@ -1,3 +1,4 @@
+// Importing React, useState, useEffect, useMutation, useQuery, Container, Card, Button, Row, Col, GET_ME, REMOVE_BOOK, Auth, removeBookId
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import{useQuery} from '@apollo/client';
@@ -12,7 +13,7 @@ import { GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
-
+// this is the saved books function
 const SavedBooks = () => {
   const[removeBook] = useMutation(REMOVE_BOOK);
   const { loading, data } = useQuery(GET_ME);
@@ -25,7 +26,7 @@ const SavedBooks = () => {
     if (!token) {
       return false;
     }
-
+// this is the try catch function that is used to remove a book from the database
     try {
       await removeBook({ variables: { bookId }, 
       update: cache => {
@@ -49,7 +50,7 @@ const SavedBooks = () => {
   if (loading) {
     return <h2>LOADING...</h2>;
   }
-
+// this is the return function that is used to display the saved books
   return (
     <>
       <div fluid className='text-light bg-dark p-5'>

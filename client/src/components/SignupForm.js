@@ -19,7 +19,7 @@ const SignupForm = () => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
-
+// this is the handle form submit function
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -29,13 +29,13 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-
+// this is the mutation that is used to create a user 
     try {
       const {data} = await createUser({
         variables: { ...userFormData }
       });
 
-     
+     // if there's an error, let's display it
       Auth.login( data.createUser.token );
     } catch (err) {
       console.error(err);

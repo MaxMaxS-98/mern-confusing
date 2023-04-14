@@ -7,12 +7,13 @@ import { LOGIN_USER } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
+// this login form is the same as the signup form, except for the useMutation hook
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [loginUser] = useMutation(LOGIN_USER);
-
+// this is handlle input change function  for the form
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -27,12 +28,12 @@ const LoginForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-
+ 
     try {
       const {data} = await loginUser({
         variables: { ...userFormData },
       });
-
+// this is the auth function that is imported from the utils folder
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
@@ -45,7 +46,7 @@ const LoginForm = () => {
       password: '',
     });
   };
-
+// this is the form that is rendered
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
